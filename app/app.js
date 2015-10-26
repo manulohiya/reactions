@@ -2,13 +2,15 @@
 
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
-  'ngRoute'
+  'ngRoute', 'myApp.controllers'
 ])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
   	.when('/', {
-  		templateUrl: 'templates/home.html'
+  		templateUrl: 'templates/home.html',
+  		controller: 'ReactionsCtrl'
+
   	})
   
 }])

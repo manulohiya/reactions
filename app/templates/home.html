@@ -1,5 +1,22 @@
 <p>This is the partial for view 3.</p>
-<p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
-</p>
+
+<div class = "col-sm-6 col-sm-offset-3">
+
+	<h1>When Neil takes a poop</h1>
+		
+		<div class = "reactionCard">
+		{{reactions}}	
+		<div class = "reactionCard" ng-repeat = "r in reactions">	
+				 				
+				<iframe ng-src={{trust(r.gif)}} width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> 
+				
+				<br>
+				
+				<p>Submitted by {{r.author}} 
+				</p>
+				
+				
+			
+		</div>
+
+	</div>
