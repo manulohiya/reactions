@@ -1,5 +1,9 @@
 angular.module('myApp.controllers',[])
 
+	.controller('MainCtrl', ['$scope', function($scope) {
+	console.log("Main Controller is working like a BOSS")
+	}])
+
 	.controller('ReactionsCtrl', ['$scope', '$sce', function($scope, $sce){
 
 		console.log('reactions controller working')

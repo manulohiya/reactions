@@ -12,6 +12,7 @@ angular.module('myApp', [
   		controller: 'ReactionsCtrl'
 
   	})
+  	 
   
 }])
 
