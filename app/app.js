@@ -12,6 +12,11 @@ angular.module('myApp', [
   		controller: 'ReactionsCtrl'
 
   	})
+  	.when('/', {
+  		templateUrl: 'templates/home.html',
+  		controller: 'SaveCtrl'
+
+  	})
   	 
   
 }])
