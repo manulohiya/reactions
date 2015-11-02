@@ -24,8 +24,35 @@ angular.module('myApp.controllers',[])
 	  	}
 
 	  	console.log("List of reactions:",$scope.reactions)
+	}])
 
+	.controller('SaveCtrl', ['$scope',function($scope){
 
+		Parse.initialize("c5ajBRrQnBB3ZtvP67Bm2NFCPY0988b7HAnC3lND", "esGU3RcxDebLw9ZEDTfuuTAh8dS2KM053LQHgdfT");
+
+		$scope.addReaction = function() {
+
+			
+
+		  
+
+	  		var ReactionObject = Parse.Object.extend("ReactionObject");
+			var reaction = new ReactionObject();
+
+			reaction.set("author", "Neil");
+			reaction.set("gif", "//giphy.com/embed/V2CPDf8e6zs6k");
+			
+
+			reaction
+			.save(null, {
+				success: function(reaction){
+					console.log("object saved with ID", reaction.id);
+				},
+				error: function(reaction, error) {
+					console.log("object NOT saved with error code", error.message);
+				}
+			})
+	  	}
 	}])
 
 

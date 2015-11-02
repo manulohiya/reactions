@@ -1,25 +1,35 @@
-<div class="jumbotron col-sm-12">
-	<center>
-		<div class = "container">
-	<h1>When Neil takes a poop after indian tikka masala from Naan n Curry...</h1>	
-		</div>
-	</center>
-</div>
-
-
-<div class = "col-sm-12 col-sm-offset-1">		
-
-	<div class = "reactionCard" ng-repeat = "r in reactions">	
-
-		<iframe ng-src={{trust(r.gif)}} width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> 
-
-		<br>
-
-		<p>Submitted by {{r.author}} 
-		</p>
-
-
-
+<div ng-controller = "ReactionsCtrl">
+	<div class="jumbotron col-sm-12">
+		<center>
+			<div class = "container">
+		<h1>When Neil takes a poop after indian tikka masala from Naan n Curry...</h1>	
+			</div>
+		</center>
 	</div>
 
+
+	<div class = "col-sm-12 col-sm-offset-1">		
+
+		<div class = "reactionCard" ng-repeat = "r in reactions">	
+
+			<iframe ng-src={{trust(r.gif)}} width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> 
+
+			<br>
+
+			<p>Submitted by {{r.author}} 
+			</p>
+
+
+
+		</div>
+
+	</div>
+</div>
+
+<div ng-controller="SaveCtrl">
+	 	
+	<div class = "col-sm-8 col-sm-offset-4">
+      <button ng-click="addReaction()" class = "btn-primary">Save Reaction</button>
+   
+	</div>
 </div>
