@@ -27,6 +27,17 @@
 </div>
 
 <div ng-controller="SaveCtrl">
+
+
+  <form novalidate class="simple-form">
+    gif: <input type="text" ng-model="reaction.url" /><br />
+    author: <input type="text" ng-model="reaction.author" /><br />
+    
+   
+    <input type="submit" ng-click="addReaction(reaction)" value="Save" />
+  </form>
+ 
+
 	 	
 	<div class = "col-sm-8 col-sm-offset-4">
       <button ng-click="addReaction()" class = "btn-primary">Save Reaction</button>

@@ -42,15 +42,14 @@ angular.module('myApp.controllers',[])
 
 		Parse.initialize("c5ajBRrQnBB3ZtvP67Bm2NFCPY0988b7HAnC3lND", "esGU3RcxDebLw9ZEDTfuuTAh8dS2KM053LQHgdfT");
 
-		$scope.addReaction = function() {		  
-
+		$scope.addReaction = function(reactionArgs) {		  
+			console.log(reactionArgs);
 	  		var ReactionObject = Parse.Object.extend("ReactionObject");
 			var reaction = new ReactionObject();
 
-			reaction.set("author", "Neil");
-			reaction.set("gif", "//giphy.com/embed/V2CPDf8e6zs6k");
-
-
+			reaction.set("author", reactionArgs.author);
+			reaction.set("gif", reactionArgs.url);
+//giphy.com/embed/3oEdv8NIigSRpCZZmw
 			reaction
 			.save(null, {
 				success: function(reaction){
