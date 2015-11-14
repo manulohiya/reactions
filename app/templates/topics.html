@@ -1,0 +1,38 @@
+<div ng-controller = "TopicsCtrl">
+	<div class="jumbotron col-sm-12">
+		<center>
+			<div class = "container">
+		<h1>Its like Readit, but better</h1>	
+			</div>
+		</center>
+	</div>
+
+
+	<div class = "col-sm-12 col-sm-offset-1">		
+
+		<div class = "topicCard" ng-repeat = "t in topics">	
+		
+			<li> {{t.title}} </li>
+
+			<br>
+
+			
+		</div>
+
+	</div>
+
+<form novalidate class="simple-form">
+    title: <input type="textarea" ng-model="Topic.title" /><br />
+ 
+    
+   
+    <input type="submit" data-ng-click="addTopic()" value="Save" />
+  </form>
+
+
+
+
+
+ 
+</div>
+	 	

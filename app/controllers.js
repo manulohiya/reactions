@@ -67,10 +67,75 @@ angular.module('myApp.controllers',[])
 				}
 			})
 
-		
+
 
 	  	}
 	
+	}])
+
+	.controller('TopicsCtrl', ['$scope', '$sce', function($scope, $sce){
+
+		console.log('topics controller working')
+
+		Parse.initialize("c5ajBRrQnBB3ZtvP67Bm2NFCPY0988b7HAnC3lND", "esGU3RcxDebLw9ZEDTfuuTAh8dS2KM053LQHgdfT");
+
+	 	var TopicObject = Parse.Object.extend("TopicObject");
+	
+	var viewAllTopics = function() { 
+		var query = new Parse.Query(TopicObject);
+		
+		$scope.topics = [];
+		query.find({
+  			success: function(results) {   			 	
+   			 	$scope.$apply(function() {		    		
+		    		 for (var i = 0; i < results.length; i++) {
+	      				var object = results[i];	      		      				
+	      				topic = {}					
+	      				topic.title = object.get('title')
+	    				
+						$scope.topics.push(topic)	
+							
+    				}    				
+    			})
+   			 }
+   		})
+	}   
+
+	viewAllTopics();	
+
+	$scope.addTopic = function() {		  
+			
+			// Updating DOM
+			console.log("Reactiong arg: ", $scope.Topic)
+			// console.log("Before ", $scope.topics)
+			$scope.topics.push({
+				title: $scope.Topic.title
+				
+			})
+			
+			
+
+			// Saving to parse
+	  		var TopicObject = Parse.Object.extend("TopicObject");
+			var topic = new TopicObject();
+
+			topic.set("title", $scope.Topic.title);
+			
+			topic
+			.save(null, {
+				success: function(topic){
+					console.log("object saved with ID", topic.id)
+
+				},
+				error: function(topic, error) {
+					console.log("object NOT saved with error code", error.message);
+				}
+			})
+
+
+
+	  	}
+
 	}])  	
 
 	;
