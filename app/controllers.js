@@ -11,49 +11,55 @@ angular.module('myApp.controllers',[])
 		Parse.initialize("c5ajBRrQnBB3ZtvP67Bm2NFCPY0988b7HAnC3lND", "esGU3RcxDebLw9ZEDTfuuTAh8dS2KM053LQHgdfT");
 
 	 	var ReactionObject = Parse.Object.extend("ReactionObject");
+	
+	var viewAll = function() { 
 		var query = new Parse.Query(ReactionObject);
 		
 		$scope.reactions = [];
-
 		query.find({
   			success: function(results) {   			 	
    			 	$scope.$apply(function() {		    		
 		    		 for (var i = 0; i < results.length; i++) {
-	      				var object = results[i];	      			
-	      				
+	      				var object = results[i];	      		      				
 	      				reaction = {}					
 	      				reaction.gif = object.get('gif')
 	    				reaction.author = object.get('author')
-							$scope.reactions.push(reaction)	
+						$scope.reactions.push(reaction)	
 							
     				}    				
     			})
    			 }
    		})
+	}   
 
-	   	   		$scope.trust = function(srcUrl) {
-	  				
-	  				return $sce.trustAsResourceUrl(srcUrl);
-	  			}		
-	  	
-	}])
+	viewAll();	
 
-	.controller('SaveCtrl', ['$scope',function($scope){
+   		$scope.trust = function(srcUrl) {
+			return $sce.trustAsResourceUrl(srcUrl);
+		}		
 
-		Parse.initialize("c5ajBRrQnBB3ZtvP67Bm2NFCPY0988b7HAnC3lND", "esGU3RcxDebLw9ZEDTfuuTAh8dS2KM053LQHgdfT");
+		$scope.addReaction = function() {		  
+			
+			// Updating DOM
+			console.log("Reactiong arg: ", $scope.Reaction)
+			console.log("Before ", $scope.reactions)
+			$scope.reactions.push({
+				gif: $scope.Reaction.url,
+				author: $scope.Reaction.author
+			})
+			// console.log("r ", r)
+			console.log("After ", $scope.Reaction)
 
-		$scope.addReaction = function(reactionArgs) {		  
-			console.log(reactionArgs);
+			// Saving to parse
 	  		var ReactionObject = Parse.Object.extend("ReactionObject");
 			var reaction = new ReactionObject();
 
-			reaction.set("author", reactionArgs.author);
-			reaction.set("gif", reactionArgs.url);
-//giphy.com/embed/3oEdv8NIigSRpCZZmw
+			reaction.set("author", $scope.Reaction.author);
+			reaction.set("gif", $scope.Reaction.url);
 			reaction
 			.save(null, {
 				success: function(reaction){
-					console.log("object saved with ID", reaction.id);
+					console.log("object saved with ID", reaction.id)
 
 				},
 				error: function(reaction, error) {
@@ -61,8 +67,10 @@ angular.module('myApp.controllers',[])
 				}
 			})
 
-	  	}
-	}])
+		
 
+	  	}
+	
+	}])  	
 
 	;
