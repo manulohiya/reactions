@@ -1,17 +1,39 @@
-angular.module('myApp.controllers',[])
-
-	.controller('MainCtrl', ['$scope', function($scope) {
+angular.module('myApp.controllers',['ngRoute'])
+	
+	.controller('MainCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
 	console.log("Main Controller is working like a BOSS")
 	}])
 
-	.controller('ReactionsCtrl', ['$scope', '$sce', function($scope, $sce){
+	.controller('ReactionsCtrl', ['$scope', '$sce', '$routeParams',function($scope, $sce, $routeParams){
 
 		console.log('reactions controller working')
 
 		Parse.initialize("c5ajBRrQnBB3ZtvP67Bm2NFCPY0988b7HAnC3lND", "esGU3RcxDebLw9ZEDTfuuTAh8dS2KM053LQHgdfT");
 
-	 	var ReactionObject = Parse.Object.extend("ReactionObject");
+	var TopicObject = Parse.Object.extend("TopicObject")
+	var ReactionObject = Parse.Object.extend("ReactionObject");
 	
+	var viewTopic = function() {
+		console.log("viewTopic function works")
+		var query = new Parse.Query(TopicObject);
+		$scope.topic = [];
+		console.log("route params ", $routeParams)
+		query.get($routeParams.id, {
+			success: function(object){
+				console.log("Topic retreived with ID", object.id)  				
+				$scope.topic = object.get('title')	
+			},
+			error: function(topic, error) {
+				console.log("object NOT retrieved with error code", error.message);
+			}
+
+		})
+	}
+
+	viewTopic();
+
+
+
 	var viewAll = function() { 
 		var query = new Parse.Query(ReactionObject);
 		
@@ -92,7 +114,8 @@ angular.module('myApp.controllers',[])
 	      				var object = results[i];	      		      				
 	      				topic = {}					
 	      				topic.title = object.get('title')
-	    				
+	    				topic.id = object.id
+	    				console.log("topic ", topic)
 						$scope.topics.push(topic)	
 							
     				}    				

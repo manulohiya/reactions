@@ -11,14 +11,13 @@
 	<div class = "col-sm-12 col-sm-offset-1">		
 
 		<div class = "topicCard" ng-repeat = "t in topics">	
-		
-			<li> {{t.title}} </li>
-
+			<li>
+				<a href = "/app/#/topics/{{t.id}}">
+					{{t.title}}
+				</a>
+			</li>
 			<br>
-
-			
 		</div>
-
 	</div>
 
 <form novalidate class="simple-form">

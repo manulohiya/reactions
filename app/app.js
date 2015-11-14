@@ -16,6 +16,10 @@ angular.module('myApp', [
   		controller: 'TopicsCtrl'
 
   	})
+  	.when('/topics/:id',{
+  		templateUrl: 'templates/reaction.html',
+  		controller: 'ReactionsCtrl'
+  	})
   	
   	 
   
