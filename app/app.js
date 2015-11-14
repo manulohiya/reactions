@@ -10,13 +10,13 @@ angular.module('myApp', [
   	.when('/', {
   		templateUrl: 'templates/home.html',
   		controller: 'ReactionsCtrl'
+  	})
+  	.when('/topics', {
+  		templateUrl: 'templates/topics.html',
+  		controller: 'TopicsCtrl'
 
   	})
-  	.when('/', {
-  		templateUrl: 'templates/home.html',
-  		controller: 'SaveCtrl'
-
-  	})
+  	
   	 
   
 }])
